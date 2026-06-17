@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shivkumar Ram Natarajan — Marketing Strategist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f5f4ef; --surface: #ffffff; --surface2: #eeeee8;
+    --border: #ddddd5; --accent: #1a1a2e; --coral: #d64f2a;
+    --text: #1a1a2e; --muted: #7a7a82;
+    --syne: 'Syne', sans-serif; --dm: 'DM Sans', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--dm); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(245,244,239,0.92); backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: var(--syne); font-weight: 800; font-size: .95rem; letter-spacing: .1em; color: var(--accent); text-transform: uppercase; }
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--muted); font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; transition: color .2s; }
+  .nav-links a:hover { color: var(--coral); }
+
+  .hero {
+    min-height: 100vh; display: grid; grid-template-columns: 1fr 400px;
+    align-items: center; padding: 8rem 3rem 5rem; gap: 5rem;
+    border-bottom: 1px solid var(--border); max-width: 1280px; margin: 0 auto;
+  }
+  .hero-eyebrow { font-size: .7rem; letter-spacing: .22em; text-transform: uppercase; color: var(--coral); margin-bottom: 1.4rem; font-weight: 500; }
+  .hero-name { font-family: var(--syne); font-weight: 800; font-size: clamp(3.2rem, 6.5vw, 5.8rem); line-height: .92; color: var(--accent); margin-bottom: 1.8rem; }
+  .hero-name em { font-style: normal; color: var(--coral); }
+  .hero-tagline { font-size: 1.08rem; color: var(--muted); max-width: 40ch; margin-bottom: 2.8rem; line-height: 1.75; }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn { padding: .8rem 2rem; font-size: .8rem; font-family: var(--dm); letter-spacing: .1em; text-transform: uppercase; font-weight: 500; text-decoration: none; transition: all .2s; cursor: pointer; border: none; border-radius: 1px; }
+  .btn-primary { background: var(--accent); color: #f5f4ef; }
+  .btn-primary:hover { background: var(--coral); }
+  .btn-ghost { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); }
+  .btn-ghost:hover { border-color: var(--coral); color: var(--coral); }
+
+  .hero-photo-wrap { position: relative; }
+  .hero-photo-wrap::before {
+    content: ''; position: absolute; inset: -10px -10px 10px 10px;
+    border: 1.5px solid var(--coral); border-radius: 2px; z-index: 0;
+  }
+  .hero-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top center; display: block; border-radius: 2px; position: relative; z-index: 1; filter: grayscale(10%); }
+  .hero-photo-badge {
+    position: absolute; bottom: -1.5rem; left: -1.5rem; z-index: 2;
+    background: var(--coral); color: #fff; padding: .9rem 1.2rem;
+    font-family: var(--syne); font-weight: 700; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; line-height: 1.5;
+  }
+
+  .section { padding: 6rem 3rem; border-bottom: 1px solid var(--border); }
+  .section-inner { max-width: 1180px; margin: 0 auto; }
+  .section-label { font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: var(--coral); margin-bottom: .5rem; font-weight: 500; }
+  .section-title { font-family: var(--syne); font-weight: 800; font-size: clamp(2rem, 3.8vw, 3rem); color: var(--accent); line-height: 1.08; margin-bottom: 3rem; }
+
+  .about-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 4rem; align-items: start; }
+  .about-bio { color: var(--muted); line-height: 1.85; font-size: 1rem; }
+  .about-bio p + p { margin-top: 1.1rem; }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .stat-card { background: var(--surface); padding: 1.8rem; }
+  .stat-num { font-family: var(--syne); font-weight: 800; font-size: 2.6rem; color: var(--coral); line-height: 1; }
+  .stat-label { font-size: .78rem; color: var(--muted); margin-top: .4rem; letter-spacing: .04em; line-height: 1.4; }
+
+  .exp-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .exp-item { background: var(--surface); padding: 2.2rem 2.8rem; display: grid; grid-template-columns: 1fr 130px; gap: 2rem; transition: background .2s; }
+  .exp-item:hover { background: var(--surface2); }
+  .exp-role { font-family: var(--syne); font-weight: 700; font-size: 1.05rem; color: var(--accent); margin-bottom: .35rem; }
+  .exp-company { color: var(--coral); font-size: .82rem; margin-bottom: .8rem; font-weight: 500; letter-spacing: .04em; }
+  .exp-desc { color: var(--muted); font-size: .9rem; max-width: 58ch; line-height: 1.75; }
+  .exp-date { font-size: .72rem; letter-spacing: .1em; color: var(--muted); text-transform: uppercase; white-space: nowrap; padding-top: .3rem; text-align: right; }
+
+  .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .portfolio-card { background: var(--surface); overflow: hidden; transition: background .2s; display: flex; flex-direction: column; }
+  .portfolio-card:hover { background: var(--surface2); }
+  .portfolio-img-wrap { overflow: hidden; }
+  .portfolio-card-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; object-position: center; display: block; border-bottom: 1px solid var(--border); transition: transform .35s ease; }
+  .portfolio-card:hover .portfolio-card-img { transform: scale(1.04); }
+  .portfolio-card-body { padding: 1.5rem 1.8rem; flex: 1; display: flex; flex-direction: column; }
+  .portfolio-card-title { font-family: var(--syne); font-weight: 700; font-size: .95rem; color: var(--accent); margin-bottom: .5rem; }
+  .portfolio-card-desc { color: var(--muted); font-size: .84rem; line-height: 1.65; flex: 1; }
+  .portfolio-card-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1rem; }
+  .tag { font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--border); padding: .2rem .55rem; background: var(--bg); }
+
+  .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .skill-group { background: var(--surface); padding: 2rem; }
+  .skill-group-title { font-family: var(--syne); font-weight: 700; font-size: .72rem; letter-spacing: .15em; text-transform: uppercase; color: var(--coral); margin-bottom: 1.3rem; padding-bottom: .8rem; border-bottom: 1px solid var(--border); }
+  .skill-list { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+  .skill-list li { font-size: .88rem; color: var(--muted); }
+
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .edu-card { background: var(--surface); padding: 2.5rem 2.8rem; transition: background .2s; }
+  .edu-card:hover { background: var(--surface2); }
+  .edu-degree { font-family: var(--syne); font-weight: 700; font-size: 1.1rem; color: var(--accent); margin-bottom: .4rem; }
+  .edu-school { color: var(--coral); font-size: .85rem; margin-bottom: .3rem; font-weight: 500; }
+  .edu-year { font-size: .72rem; color: var(--muted); margin-bottom: 1rem; letter-spacing: .1em; text-transform: uppercase; }
+  .edu-detail { font-size: .88rem; color: var(--muted); line-height: 1.75; }
+  .distinction-badge { display: inline-block; margin-top: 1rem; font-size: .62rem; letter-spacing: .15em; text-transform: uppercase; background: rgba(214,79,42,.1); color: var(--coral); padding: .25rem .7rem; border: 1px solid rgba(214,79,42,.3); }
+
+  .contact-section { padding: 7rem 3rem; text-align: center; }
+  .contact-intro { color: var(--muted); max-width: 44ch; margin: 0 auto 3rem; font-size: 1.05rem; line-height: 1.75; }
+  .contact-links { display: flex; flex-wrap: wrap; gap: 1.2rem; justify-content: center; }
+  .contact-link { display: flex; align-items: center; gap: .7rem; padding: 1.1rem 2.2rem; background: var(--surface); border: 1.5px solid var(--border); text-decoration: none; color: var(--accent); font-size: .85rem; transition: all .2s; font-weight: 500; }
+  .contact-link:hover { border-color: var(--coral); color: var(--coral); }
+
+  footer { padding: 2rem 3rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; color: var(--muted); font-size: .78rem; }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .5s, transform .5s; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; gap: 3rem; padding: 7rem 2rem 4rem; }
+    .hero-photo-wrap { max-width: 320px; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .portfolio-grid { grid-template-columns: 1fr 1fr; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: .5rem; }
+    .exp-date { text-align: left; }
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .section { padding: 4rem 1.5rem; }
+    .contact-section { padding: 4rem 1.5rem; }
+  }
+  @media (max-width: 560px) {
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Shivkumar Ram</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div style="border-bottom: 1px solid var(--border);">
+<div class="hero">
+  <div>
+    <p class="hero-eyebrow">Marketing Strategist · Digital · Brand</p>
+    <h1 class="hero-name">Shivkumar<br><em>Natarajan</em></h1>
+    <p class="hero-tagline">Helping brands grow through data-driven strategy, creative content, and digital marketing that actually moves the needle.</p>
+    <div class="hero-cta">
+      <a href="#portfolio" class="btn btn-primary">View My Work</a>
+      <a href="https://drive.google.com/file/d/1C73MsS3vQLn78dBjAQt-_ylfdBrqNchq/view" target="_blank" class="btn btn-ghost">Download CV</a>
+    </div>
+  </div>
+  <div class="hero-photo-wrap">
+    <img class="hero-photo"
+      src="https://cdn.prod.website-files.com/67a4e377370a8e760e71255a/67a887cfb7099ec3947bb0a9_RAJ_0707%20copy%202.JPG"
+      alt="Shivkumar Ram Natarajan" />
+    <div class="hero-photo-badge">MSc · Distinction<br>Kingston University</div>
+  </div>
+</div>
+</div>
+
+<section class="section" id="about">
+  <div class="section-inner">
+    <p class="section-label reveal">Background</p>
+    <h2 class="section-title reveal">About Me</h2>
+    <div class="about-grid">
+      <div class="about-bio reveal">
+        <p>I'm Shivkumar Ram Natarajan — a results-driven marketing professional with expertise spanning digital marketing, brand strategy, SEO, and creative content development.</p>
+        <p>Holding an MSc in International Business Management with Distinction from Kingston University, I bring a data-driven approach to everything I do. I've worked with 20+ small businesses as a freelance consultant, and developed award-winning go-to-market strategies for SaaS companies.</p>
+        <p>I'm passionate about building brands that connect — blending analytical rigour with creative storytelling to craft marketing that's not just visible, but memorable.</p>
+      </div>
+      <div class="about-stats reveal">
+        <div class="stat-card"><div class="stat-num">20+</div><div class="stat-label">Businesses Consulted</div></div>
+        <div class="stat-card"><div class="stat-num">150%</div><div class="stat-label">Avg. Customer Growth</div></div>
+        <div class="stat-card"><div class="stat-num">MSc</div><div class="stat-label">Distinction · Kingston</div></div>
+        <div class="stat-card"><div class="stat-num">1K+</div><div class="stat-label">Social Followers Grown</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="experience">
+  <div class="section-inner">
+    <p class="section-label reveal">Career</p>
+    <h2 class="section-title reveal">Experience</h2>
+    <div class="exp-list reveal">
+      <div class="exp-item">
+        <div>
+          <div class="exp-role">Freelance Marketing Consultant</div>
+          <div class="exp-company">Independent · Remote</div>
+          <div class="exp-desc">Partnered with 20+ small businesses to develop custom marketing strategies, improve brand identity, and grow online presence — with clients achieving over 150% customer growth.</div>
+        </div>
+        <div class="exp-date">2023 – Present</div>
+      </div>
+      <div class="exp-item">
+        <div>
+          <div class="exp-role">Go-To-Market Strategy Consultant</div>
+          <div class="exp-company">AMPOS Solutions · Thailand</div>
+          <div class="exp-desc">Developed a market expansion strategy for a SaaS company using data analysis and market research — earning the highest score in my MSc cohort.</div>
+        </div>
+        <div class="exp-date">2023</div>
+      </div>
+      <div class="exp-item">
+        <div>
+          <div class="exp-role">Chief Marketing & Technology Officer</div>
+          <div class="exp-company">Future MUN · Christ University</div>
+          <div class="exp-desc">Designed sponsorship decks, promotional materials, and digital campaigns for large-scale university events. Secured key partnerships through targeted outreach.</div>
+        </div>
+        <div class="exp-date">2020 – 2022</div>
+      </div>
+      <div class="exp-item">
+        <div>
+          <div class="exp-role">Marketing Lead & Social Media Manager</div>
+          <div class="exp-company">Christ University Quiz Association</div>
+          <div class="exp-desc">Managed all social media and marketing operations. Grew the organisation's Instagram to 1,000+ followers using Google Analytics and Instagram Insights.</div>
+        </div>
+        <div class="exp-date">2020 – 2022</div>
+      </div>
+      <div class="exp-item">
+        <div>
+          <div class="exp-role">Library Assistant & Student Ambassador</div>
+          <div class="exp-company">Kingston University · London</div>
+          <div class="exp-desc">Represented Kingston University at recruitment fairs. Assisted with library catalogue management and student services during peak academic periods.</div>
+        </div>
+        <div class="exp-date">2022 – 2024</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="portfolio">
+  <div class="section-inner">
+    <p class="section-label reveal">Work Samples</p>
+    <h2 class="section-title reveal">Portfolio</h2>
+    <div class="portfolio-grid">
+
+      <div class="portfolio-card reveal">
+        <div class="portfolio-img-wrap">
+          <img class="portfolio-card-img" src="https://cdn.prod.website-files.com/67a4e377370a8e760e71255a/67a5abdf4927187acbcbbfa3_minimalistic-business-card-mockup-min.png" alt="Business Card Design" loading="lazy" />
+        </div>
+        <div class="portfolio-card-body">
+          <div class="portfolio-card-title">Visiting Card Design</div>
+          <div class="portfolio-card-desc">Minimalist business card balancing clean typography with strong brand identity for a client.</div>
+          <div class="portfolio-card-tags"><span class="tag">Branding</span><span class="tag">Print</span><span class="tag">Adobe CC</span></div>
+        </div>
+      </div>
+
+      <div class="portfolio-card reveal">
+        <div class="portfolio-img-wrap">
+          <img class="portfolio-card-img" src="https://cdn.prod.website-files.com/67a4e377370a8e760e71255a/67a5aa30f8476ebac6acb7c9_ipad-pro-mockup.png" alt="Certificate Design" loading="lazy" />
+        </div>
+        <div class="portfolio-card-body">
+          <div class="portfolio-card-title">Certificate Design</div>
+          <div class="portfolio-card-desc">Professionally designed certificate template with clear hierarchy and polished formal layout.</div>
+          <div class="portfolio-card-tags"><span class="tag">Layout</span><span class="tag">Typography</span></div>
+        </div>
+      </div>
+
+      <div class="portfolio-card reveal">
+        <div class="portfolio-img-wrap">
+          <img class="portfolio-card-img" src="https://cdn.prod.website-files.com/67a4e377370a8e760e71255a/67a7a138198afaee52db8511_imac-screen-mockup.png" alt="Brochure Design" loading="lazy" />
+        </div>
+        <div class="portfolio-card-body">
+          <div class="portfolio-card-title">Brochure Design</div>
+          <div class="portfolio-card-desc">Digital brochure developed for a client campaign, optimised for both screen and print.</div>
+          <div class="portfolio-card-tags"><span class="tag">Brochure</span><span class="tag">Brand</span><span class="tag">Canva</span></div>
+        </div>
+      </div>
+
+      <div class="portfolio-card reveal">
+        <div class="portfolio-img-wrap">
+          <img class="portfolio-card-img" src="https://cdn.prod.website-files.com/67a4e377370a8e760e71255a/67a5b145fc634f042fef68eb_z-fold-mockup.png" alt="Z-Fold Brochure" loading="lazy" />
+        </div>
+        <div class="portfolio-card-body">
+          <div class="portfolio-card-title">Z-Fold Brochure</div>
+          <div class="portfolio-card-desc">Multi-panel brochure with structured information flow and cohesive visual storytelling.</div>
+          <div class="portfolio-card-tags"><span class="tag">Print</span><span class="tag">Layout</span><span class="tag">Brand</span></div>
+        </div>
+      </div>
+
+      <div class="portfolio-card reveal">
+        <div class="portfolio-img-wrap">
+          <img class="portfolio-card-img" src="https://cdn.prod.website-files.com/67a4e377370a8e760e71255a/67a7a138ed7c682ff5262bc9_google-pixelbook-mockup.png" alt="Social Media Management" loading="lazy" />
+        </div>
+        <div class="portfolio-card-body">
+          <div class="portfolio-card-title">Social Media Management</div>
+          <div class="portfolio-card-desc">End-to-end social strategy and content planning driving measurable engagement growth.</div>
+          <div class="portfolio-card-tags"><span class="tag">Social Media</span><span class="tag">Strategy</span><span class="tag">Analytics</span></div>
+        </div>
+      </div>
+
+      <div class="portfolio-card reveal">
+        <div class="portfolio-img-wrap">
+          <img class="portfolio-card-img" src="https://cdn.prod.website-files.com/67a4e377370a8e760e71255a/67a7a43250ca36762a37327a_mac-pro-2019-mockup.png" alt="Poster Design" loading="lazy" />
+        </div>
+        <div class="portfolio-card-body">
+          <div class="portfolio-card-title">Poster Design</div>
+          <div class="portfolio-card-desc">High-impact promotional poster for a university event, balancing bold visuals with clear hierarchy.</div>
+          <div class="portfolio-card-tags"><span class="tag">Poster</span><span class="tag">Event</span><span class="tag">Adobe CC</span></div>
+        </div>
+      </div>
+
+      <div class="portfolio-card reveal">
+        <div class="portfolio-img-wrap">
+          <img class="portfolio-card-img" src="https://cdn.prod.website-files.com/67a4e377370a8e760e71255a/67a5abe08792dc6c56d6e585_poster-on-wall-mockup-min.png" alt="Poster In Situ" loading="lazy" />
+        </div>
+        <div class="portfolio-card-body">
+          <div class="portfolio-card-title">Poster — In Situ</div>
+          <div class="portfolio-card-desc">Real-world placement mockup showing how the design performs in a public ambient environment.</div>
+          <div class="portfolio-card-tags"><span class="tag">OOH</span><span class="tag">Poster</span><span class="tag">Branding</span></div>
+        </div>
+      </div>
+
+      <div class="portfolio-card reveal">
+        <div class="portfolio-img-wrap">
+          <img class="portfolio-card-img" src="https://cdn.prod.website-files.com/67a4e377370a8e760e71255a/67a5abdf53c1dc1636235326_modern-laptop-mockup-with-airpods-min.png" alt="Client Presentation" loading="lazy" />
+        </div>
+        <div class="portfolio-card-body">
+          <div class="portfolio-card-title">Client Presentation</div>
+          <div class="portfolio-card-desc">Polished client deck communicating strategic direction and data-driven campaign recommendations.</div>
+          <div class="portfolio-card-tags"><span class="tag">Presentation</span><span class="tag">Strategy</span><span class="tag">B2B</span></div>
+        </div>
+      </div>
+
+      <div class="portfolio-card reveal">
+        <div class="portfolio-img-wrap">
+          <img class="portfolio-card-img" src="https://cdn.prod.website-files.com/67a4e377370a8e760e71255a/67a7a1382fdd982f33b599ef_clean-minimalistic-notebook-mockup.png" alt="Data Analysis" loading="lazy" />
+        </div>
+        <div class="portfolio-card-body">
+          <div class="portfolio-card-title">Data Analysis</div>
+          <div class="portfolio-card-desc">Market research and data analysis using SPSS, Qualtrics, and Tableau to surface actionable consumer insights.</div>
+          <div class="portfolio-card-tags"><span class="tag">SPSS</span><span class="tag">Tableau</span><span class="tag">Research</span></div>
+        </div>
+      </div>
+
+      <div class="portfolio-card reveal">
+        <div class="portfolio-img-wrap">
+          <img class="portfolio-card-img" src="https://cdn.prod.website-files.com/67a4e377370a8e760e71255a/67a5b1463452f4f190e3aff6_z-fold-mockup-2.png" alt="Data Collection" loading="lazy" />
+        </div>
+        <div class="portfolio-card-body">
+          <div class="portfolio-card-title">Data Collection Framework</div>
+          <div class="portfolio-card-desc">Structured data collection methodologies for market research enabling clean analysis and insight generation.</div>
+          <div class="portfolio-card-tags"><span class="tag">Market Research</span><span class="tag">Qualtrics</span><span class="tag">Data</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section" id="skills">
+  <div class="section-inner">
+    <p class="section-label reveal">Capabilities</p>
+    <h2 class="section-title reveal">Skills & Tools</h2>
+    <div class="skills-grid reveal">
+      <div class="skill-group">
+        <div class="skill-group-title">Digital Marketing</div>
+        <ul class="skill-list"><li>SEO & SEM</li><li>Social Media Strategy</li><li>Content Marketing</li><li>Email Campaigns</li><li>Digital Advertising</li></ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Analytics & Data</div>
+        <ul class="skill-list"><li>Google Analytics 4</li><li>SPSS</li><li>Tableau</li><li>Qualtrics</li><li>SEMrush</li></ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Design & Creative</div>
+        <ul class="skill-list"><li>Adobe Photoshop</li><li>Adobe Illustrator</li><li>Canva</li><li>Brand Identity</li><li>Print Design</li></ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Strategy & Business</div>
+        <ul class="skill-list"><li>Brand Strategy</li><li>Market Research</li><li>Go-to-Market Planning</li><li>International Business</li><li>Competitor Analysis</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="education">
+  <div class="section-inner">
+    <p class="section-label reveal">Academic</p>
+    <h2 class="section-title reveal">Education</h2>
+    <div class="edu-grid reveal">
+      <div class="edu-card">
+        <div class="edu-degree">MSc International Business Management</div>
+        <div class="edu-school">Kingston University, London</div>
+        <div class="edu-year">2022 – 2023</div>
+        <div class="edu-detail">Specialised in international marketing, buyer behaviour, and business strategy. Developed real-world consulting skills through a market expansion project with AMPOS Solutions — earning the highest score in the cohort.</div>
+        <span class="distinction-badge">Distinction</span>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">BCom in Finance & Accountancy</div>
+        <div class="edu-school">Christ University, Bangalore</div>
+        <div class="edu-year">2019 – 2022</div>
+        <div class="edu-detail">Combined finance with marketing principles. Final-year research focused on Indian FinTech marketing strategies targeting Generation Z via digital platforms and personalised marketing techniques.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="section-inner">
+    <p class="section-label">Get In Touch</p>
+    <h2 class="section-title" style="text-align:center; margin-bottom:1.2rem">Let's work together</h2>
+    <p class="contact-intro">Open to marketing roles, consultancy projects, and creative collaborations. I'd love to hear from you.</p>
+    <div class="contact-links">
+      <a href="mailto:shivkumarramnatarajan@gmail.com" class="contact-link"><span>✉</span> shivkumarramnatarajan@gmail.com</a>
+      <a href="https://www.linkedin.com/in/shivkumar-ram-natarajan-4b10b1192/" target="_blank" class="contact-link"><span>in</span> LinkedIn Profile</a>
+      <a href="https://drive.google.com/file/d/1C73MsS3vQLn78dBjAQt-_ylfdBrqNchq/view" target="_blank" class="contact-link"><span>↓</span> Download Resume</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Shivkumar Ram Natarajan</span>
+  <span>Marketing · Strategy · Brand</span>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: 0.1 });
+reveals.forEach(r => io.observe(r));
+</script>
+</body>
+</html>
